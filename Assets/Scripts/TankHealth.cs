@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyObject : MonoBehaviour
+public class TankHealth : MonoBehaviour
 {
     [SerializeField]
-    private GameObject effectPrefab;
+    public GameObject effectPrefab;
 
     [SerializeField]
-    private GameObject effectPrefab2;
+    public GameObject effectPrefab2;
+    public int tankHP;
 
-    public int objectHP;
 
     private void OnTriggerEnter(Collider other)
-    //接触したオブジェクトが引数otherとして渡される
     {
-        if(other.CompareTag("Shell"))
-        //接触したオブジェクトのタグが"Shell"の時
+        if(other.gameObject.tag == "EnemyShell")
         {
-            objectHP -= 1;
+            tankHP -= 1;
 
-            if(objectHP > 0)
+            if (tankHP > 0) 
             {
-
                 Destroy(other.gameObject);
-
+                
                 //GameObject effect = Instantiate(effectPrefab, other.transform.position, Quaternion.identity);
-                //Destroy(effect, 2.0f);
-
+                //Destroy(effect, 1.0f);
+                
             }
 
             else
@@ -35,18 +32,17 @@ public class DestroyObject : MonoBehaviour
                 Destroy(other.gameObject);
 
                 //GameObject effect2 = Instantiate(effectPrefab2, other.transform.position, Quaternion.identity);
-                //Destroy(effect2, 2.0f);
+                //Destroy(effect, 1.0f);
 
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
-
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
