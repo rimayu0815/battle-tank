@@ -36,7 +36,7 @@ public class DestroyObject : MonoBehaviour
 
                 //GameObject effect2 = Instantiate(effectPrefab2, other.transform.position, Quaternion.identity);
                 //Destroy(effect2, 2.0f);
-                Debug.Log(this.gameObject);
+
                 Destroy(this.gameObject);
             }
 

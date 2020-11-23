@@ -28,7 +28,7 @@ public class TankMovement : MonoBehaviour
     void TankMove()//前進後退のメソッド
     {
         movementInputValue = Input.GetAxis("Vertical");
-        //GetAxisメソッドでVertical(十字キー、w,a,s,d)の入力を受け取り、その値をmovementInputValueへと代入する
+        //GetAxisメソッドでVertical(上下キー、w,s)の入力を受け取り、その値をmovementInputValueへと代入する
         //Horizontalは水平
        
         Vector3 movement = transform.forward * movementInputValue * moveSpeed * Time.deltaTime;
@@ -43,7 +43,7 @@ public class TankMovement : MonoBehaviour
     void TankTurn()//旋回のメソッド
     {
         turnInputValue = Input.GetAxis("Horizontal");
-        //GetAxisメソッドでHorizontal(十字キー、w,a,s,d)の入力を受けとり、その値をturnInputValueへと代入する
+        //GetAxisメソッドでHorizontal(左右キー、a,d)の入力を受けとり、その値をturnInputValueへと代入する
         //Verticalは垂直
 
         float turn = turnInputValue * turnSpeed * Time.deltaTime;

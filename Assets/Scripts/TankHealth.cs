@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TankHealth : MonoBehaviour
 {
@@ -34,9 +35,20 @@ public class TankHealth : MonoBehaviour
                 //GameObject effect2 = Instantiate(effectPrefab2, other.transform.position, Quaternion.identity);
                 //Destroy(effect, 1.0f);
 
-                Destroy(gameObject);
+                //Destroy(gameObject);
+
+                this.gameObject.SetActive(false);
+                //プレーヤーを破壊せずに画面から見えなくする
+                //プレーヤーを破壊すると、その時点でメモリー上から消えるので、以降のコードが実行されなくなる
+
+                Invoke("GoToGameOver", 1.5f);//1.5秒後に「GoToGameOver()」メソッドを実行する
             }
         }
+    }
+
+    void GoToGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     // Start is called before the first frame update
