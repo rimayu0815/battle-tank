@@ -19,9 +19,9 @@ public class ChaseEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null)
+        if (target != null)//ターゲットが空ではなかったら
         {
-            agent.destination = target.transform.position;
+            agent.destination = target.transform.position;//目標の位置をエージェントの目的地として設定し取得する
 
         }
     }
