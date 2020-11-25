@@ -2023,6 +2023,7 @@ MonoBehaviour:
   shellPrefab: {fileID: 7274507495125644308, guid: 7db9fb15da856c841bf71ebe56212ebf,
     type: 3}
   shotSound: {fileID: 8300000, guid: 09fb3405041dea94d8e929dd9dddde8a, type: 3}
+  shotCount: 10
 --- !u!1 &1573114105
 GameObject:
   m_ObjectHideFlags: 0
