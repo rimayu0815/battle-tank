@@ -13,18 +13,28 @@ public class EnemyShotShell : MonoBehaviour
     private AudioClip shotSound;
     private int interval;
 
+    public float stopTimer = 5.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    // Update is called once per frame50
     void Update()
     {
         interval += 1;
 
-        if (interval % 300 == 0)//発射の間隔
+        stopTimer -= Time.deltaTime;
+
+        if(stopTimer < 0)
+        {
+            stopTimer = 0;
+        }
+
+        if (interval %50  == 0 && stopTimer<= 0)//発射の間隔
         {
             GameObject enemyShell = Instantiate(enemyShellPrefab, transform.position, Quaternion.identity);
 
@@ -38,5 +48,10 @@ public class EnemyShotShell : MonoBehaviour
 
 
         }
+    }
+
+    public void AddStopTimer(float amount)//敵の攻撃をストップさせるメソッド
+    {
+        stopTimer += amount;
     }
 }

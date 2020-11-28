@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShotShell : MonoBehaviour
 {
@@ -18,10 +19,18 @@ public class ShotShell : MonoBehaviour
 
     public int shotCount;
 
+    [SerializeField]
+    private Text shellLabel;
+
+    public int shotMaxCount = 20;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        shellLabel.text = "砲弾:" + shotCount;
+
+        shotCount = shotMaxCount;
     }
 
     // Update is called once per frame
@@ -36,6 +45,7 @@ public class ShotShell : MonoBehaviour
 
             shotCount -= 1;
 
+            shellLabel.text = "砲弾:" + shotCount;
 
             GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
             //shellPrefabとtransformのpositionの値とQuaternionのidentity(無回転のQuarternion)をInstantiateメソッドで受け取ってshellに代入する
@@ -52,5 +62,17 @@ public class ShotShell : MonoBehaviour
             //shotSoundを流す
 
         }
+    }
+
+    public void AddShell(int amount)
+    {
+        shotCount += amount;
+
+        if(shotCount > shotMaxCount)
+        {
+            shotCount = shotMaxCount;
+        }
+
+        shellLabel.text = "砲弾:" + shotCount;
     }
 }

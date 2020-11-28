@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TankHealth : MonoBehaviour
 {
@@ -12,12 +13,19 @@ public class TankHealth : MonoBehaviour
     public GameObject effectPrefab2;
     public int tankHP;
 
+    [SerializeField]
+    private Text HPLabel;
+
+    public int HPMax = 20; 
+
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "EnemyShell")
         {
             tankHP -= 1;
+
+            HPLabel.text = "HP:" + tankHP;
 
             if (tankHP > 0) 
             {
@@ -50,11 +58,26 @@ public class TankHealth : MonoBehaviour
     {
         SceneManager.LoadScene("GameOver");
     }
+    
+    public void AddHP(int amount)
+    {
+        tankHP += amount;
+
+        if(tankHP >HPMax)
+        {
+            tankHP = HPMax;
+        }
+
+        HPLabel.text = "HP:" + tankHP;
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        HPLabel.text = "HP:" + tankHP;
+
+        tankHP = HPMax; 
     }
 
     // Update is called once per frame
