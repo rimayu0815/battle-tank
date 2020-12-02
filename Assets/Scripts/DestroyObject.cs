@@ -12,6 +12,21 @@ public class DestroyObject : MonoBehaviour
 
     public int objectHP;
 
+    [SerializeField]
+    private GameObject[] itemPrefab;
+
+    private int number;
+
+    [SerializeField]
+    private int Getpoint;
+
+ 
+    //[SerializeField]
+    //private GameObject HPItemPrefab;
+
+    //[SerializeField]
+    //private GameObject StopAttackItemPrefab;
+
     private void OnTriggerEnter(Collider other)
     //接触したオブジェクトが引数otherとして渡される
     {
@@ -37,7 +52,18 @@ public class DestroyObject : MonoBehaviour
                 //GameObject effect2 = Instantiate(effectPrefab2, other.transform.position, Quaternion.identity);
                 //Destroy(effect2, 2.0f);
 
+                Debug.Log("000");
                 Destroy(this.gameObject);
+
+                Debug.Log("111");
+                number = Random.Range(0, itemPrefab.Length);
+                Debug.Log("222");
+                Instantiate(itemPrefab[number], transform.position, Quaternion.identity);
+
+                FindObjectOfType<Score>().AddScore(Getpoint);//ScoreScriptのAddScoreメソッドをGetpoint変数を使用して実行する
+
+
+
             }
 
         }

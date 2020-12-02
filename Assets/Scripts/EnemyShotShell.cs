@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyShotShell : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class EnemyShotShell : MonoBehaviour
     private int interval;
 
     public float stopTimer = 5.0f;
+
+    [SerializeField]
+    private Text stopLabel;
 
 
     // Start is called before the first frame update
@@ -34,7 +38,9 @@ public class EnemyShotShell : MonoBehaviour
             stopTimer = 0;
         }
 
-        if (interval %50  == 0 && stopTimer<= 0)//発射の間隔
+        stopLabel.text = "" + stopTimer.ToString("0");//小数点以下は切り捨て
+
+        if (interval %200  == 0 && stopTimer<= 0)//発射の間隔
         {
             GameObject enemyShell = Instantiate(enemyShellPrefab, transform.position, Quaternion.identity);
 
@@ -48,10 +54,14 @@ public class EnemyShotShell : MonoBehaviour
 
 
         }
+
+
     }
 
     public void AddStopTimer(float amount)//敵の攻撃をストップさせるメソッド
     {
         stopTimer += amount;
+
+        stopLabel.text = "" + stopTimer.ToString("0");
     }
 }

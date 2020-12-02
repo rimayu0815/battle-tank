@@ -23,6 +23,7 @@ public class TankMovement : MonoBehaviour
     {
         TankMove();
         TankTurn();
+        Tankbalance();
     }
 
     void TankMove()//前進後退のメソッド
@@ -30,7 +31,7 @@ public class TankMovement : MonoBehaviour
         movementInputValue = Input.GetAxis("Vertical");
         //GetAxisメソッドでVertical(上下キー、w,s)の入力を受け取り、その値をmovementInputValueへと代入する
         //Horizontalは水平
-       
+
         Vector3 movement = transform.forward * movementInputValue * moveSpeed * Time.deltaTime;
         //Time.deltaTimeとは緒空前のフレームと今のフレーム間で経過した時間を返すプロパティ
         //transform.forward都は単位ベクトルVector3(0,0,1)とゲームオブジェクトの持つ回転をかけたもの
@@ -56,4 +57,18 @@ public class TankMovement : MonoBehaviour
         rb.MoveRotation(rb.rotation * turnRotation);
 
     }
+    void Tankbalance()//傾いてしまったときにもとに正すため
+    {
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Quaternion quaternion = this.transform.rotation;
+
+            transform.rotation = Quaternion.Euler(0, this.transform.rotation.y ,0 );
+        }
+
+    }
+
+
+
 }
