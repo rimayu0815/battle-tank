@@ -18,6 +18,9 @@ public class CameraControlloer : MonoBehaviour
     [SerializeField]
     private AudioListener FPSListener;
 
+    [SerializeField]
+    private GameObject aimImage;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,8 @@ public class CameraControlloer : MonoBehaviour
 
         mainListener.enabled = true;
         FPSListener.enabled = false;
+
+        aimImage.SetActive(false);
 
     }
 
@@ -46,6 +51,8 @@ public class CameraControlloer : MonoBehaviour
 
             mainListener.enabled = false;
             FPSListener.enabled = true;
+
+            aimImage.SetActive(true);
         }
 
         else if(Input.GetKeyDown(KeyCode.C) &&mainCameraON ==false)//もし「Cボタン」を押したとき、「かつ」、「mainCameraON」の状態が「false」の時
@@ -58,6 +65,8 @@ public class CameraControlloer : MonoBehaviour
 
             mainListener.enabled = true;
             FPSListener.enabled = false;
+
+            aimImage.SetActive(false);
         }
 
     }
