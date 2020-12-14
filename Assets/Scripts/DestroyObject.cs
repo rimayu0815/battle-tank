@@ -35,7 +35,7 @@ public class DestroyObject : MonoBehaviour
         {
             objectHP -= 1;
 
-            if(objectHP > 0)
+            if (objectHP > 0)
             {
 
                 Destroy(other.gameObject);
@@ -44,6 +44,7 @@ public class DestroyObject : MonoBehaviour
                 //Destroy(effect, 2.0f);
 
             }
+
 
             else
             {
@@ -55,14 +56,19 @@ public class DestroyObject : MonoBehaviour
                 Debug.Log("000");
                 Destroy(this.gameObject);
 
+
+
                 Debug.Log("111");
                 number = Random.Range(0, itemPrefab.Length);
                 Debug.Log("222");
                 Instantiate(itemPrefab[number], transform.position, Quaternion.identity);
+               
+
+                
 
                 FindObjectOfType<Score>().AddScore(Getpoint);//ScoreScriptのAddScoreメソッドをGetpoint変数を使用して実行する
 
-
+                FindObjectOfType<GameClearController>().DecreseEnemy();
 
             }
 

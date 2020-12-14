@@ -72,6 +72,22 @@ public class TankHealth : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Mine")
+        {
+
+            tankHP -= 50;
+            HPLabel.text = "" + tankHP;
+
+            if(tankHP<1)
+            {
+                this.gameObject.SetActive(false);
+                Invoke("GoToGameOver", 1.0f);
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

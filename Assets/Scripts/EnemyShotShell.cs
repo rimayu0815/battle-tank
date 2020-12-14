@@ -40,7 +40,7 @@ public class EnemyShotShell : MonoBehaviour
 
         stopLabel.text = "" + stopTimer.ToString("0");//小数点以下は切り捨て
 
-        if (interval %200  == 0 && stopTimer<= 0)//発射の間隔
+        if (interval %100  == 0 && stopTimer<= 0)//発射の間隔
         {
             GameObject enemyShell = Instantiate(enemyShellPrefab, transform.position, Quaternion.identity);
 

@@ -9,6 +9,7 @@ TagManager:
   - Shell
   - EnemyShotShell
   - Enemy
+  - Cube
   layers:
   - Default
   - TransparentFX

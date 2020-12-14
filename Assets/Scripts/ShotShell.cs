@@ -19,10 +19,15 @@ public class ShotShell : MonoBehaviour
 
     public int shotCount;
 
+    public int tripleshotCount;
+
     [SerializeField]
     private Text shellLabel;
 
     public int shotMaxCount = 20;
+
+    [SerializeField]
+    private Text tripleshellLabel;
 
 
     // Start is called before the first frame update
@@ -62,6 +67,8 @@ public class ShotShell : MonoBehaviour
             //shotSoundを流す
 
         }
+
+        TripleShell();
     }
 
     public void AddShell(int amount)
@@ -74,5 +81,55 @@ public class ShotShell : MonoBehaviour
         }
 
         shellLabel.text = "砲弾:" + shotCount;
+    }
+
+    public void TripleShell()//TrpleShellItemに送る
+                                       //上のUpdateメソッドを参考に作った
+                                       //イメージは三方向に球が飛んでいく
+    {
+        if (Input.GetKeyDown(KeyCode.T) && timer > timeBetweenShot && shotCount > 0) 
+        {
+            timer = 0.0f;
+
+            tripleshotCount -= 1;
+
+            //tripleshellLabel.text = "砲弾" + tripleshotCount;
+
+            
+            GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+
+            Rigidbody shellRb = shell.GetComponent<Rigidbody>();
+
+            shellRb.AddForce((transform.forward + transform.right) * shotSpeed);
+
+            Destroy(shell, 3.0f);
+
+
+            GameObject shell1 = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+
+            Rigidbody shellRb1 = shell1.GetComponent<Rigidbody>();
+
+            shellRb1.AddForce(transform.forward * shotSpeed);
+
+            Destroy(shell, 3.0f);
+
+            
+
+            GameObject shell2 = Instantiate(shellPrefab, transform.position, Quaternion.identity);
+
+            Rigidbody shellRb2 = shell2.GetComponent<Rigidbody>();
+
+            shellRb2.AddForce((transform.forward - transform.right) * shotSpeed);
+
+            Destroy(shell, 3.0f);
+
+
+
+
+        }
+    }
+    public void AddTripleShotShell(int amount)
+    {
+        tripleshotCount += amount;
     }
 }
